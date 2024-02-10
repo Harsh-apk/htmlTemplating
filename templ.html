@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html amp lang="en">
+{{template "head" . }}
+{{template "body" . }}
+</html>
+
+{{define "head"}}
+<head>
+    <style amp-custom>
+        .font-bold {
+            font-weight: 700;
+        }
+        .text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.p-10{
+  padding: 0.05rem;
+}
+        .bg-purple-700{
+  --tw-bg-opacity: 1;
+  background-color: rgba(109, 40, 217, var(--tw-bg-opacity));
+}
+
+        .text-blue-600 {
+            --tw-text-opacity: 1;
+            color: rgba(37, 99, 235, var(--tw-text-opacity));
+        }
+
+        .text-5xl {
+            font-size: 3rem;
+            line-height: 1;
+        }
+
+        .verdana {
+            font-family: Verdana, sans-serif;
+        }
+
+        .text-4xl {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+        }
+
+
+        .text-white {
+            --tw-text-opacity: 1;
+            color: rgba(255, 255, 255, var(--tw-text-opacity));
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+
+        .text-purple-700 {
+            --tw-text-opacity: 1;
+            color: rgba(109, 40, 217, var(--tw-text-opacity));
+        }
+        .rounded-2xl{
+  border-radius: 1rem;
+}
+
+        .text-xs {
+            font-size: 0.6rem;
+            line-height: 1rem;
+        }
+
+        .pl-right {
+            padding-left: 0.3rem;
+        }
+
+        .pt-96 {
+            padding-top: 24rem;
+        }
+        .mt-96 {
+            margin-top: 24rem;
+        }
+
+        .pt-100 {
+            padding-top: 35rem;
+        }
+
+        .pt-90 {
+            padding-top: 20rem;
+        }
+    </style>
+
+
+
+
+
+
+
+    <meta charset="utf-8" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="en-US">
+    <meta property="og:site_name" content="Glamhub">
+    <link rel="preconnect" href="https://cdn.ampproject.org">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+    <meta property="og:published_time" content="{{$.Time}}">
+    <meta property="og:modified_time" content="{{$.Time}}">
+    <meta property="article:published_time" content="{{$.Time}}">
+    <!-- Edit Title Here  -->
+    <title>{{.Head.Title}}</title>
+    <!-- Edit Title Here  -->
+    <meta property="og:title" content="{{.Head.Title}}">
+    <meta property="twitter:title" content="{{.Head.Title}}">
+    <meta property="keywords" name="keywords" content="{{$.Keywords}}">
+
+    <!-- Edit Description Here  -->
+    <meta name="description"
+        content="{{.Head.StoryDescription}}">
+    <!-- Edit Title Here  -->
+    <meta property="og:description"
+        content="{{.Head.StoryDescription}}">
+    <meta name="twitter:description" property="twitter:description" content="{{.Head.StoryDescription}}">
+
+    <!-- Edit Image Here --Thumbnail -->
+    <meta property="og:image:url" content="{{(index $.Body.Pages 0).ImageLink}}">
+    <meta property="twitter:image" content="{{(index $.Body.Pages 0).ImageLink}}">
+    <meta name="twitter:card" content="summary_large_image">
+
+
+
+
+    <!-- Edit Canonical Link Here ---- Redirect towards the same page -- Insert folder Name -->
+    <meta property="og:url" content="http://glamhub.co/webstories/{{$.NameOfFolder}}/">
+    <link rel="canonical" href="https://glamhub.co/webstories/{{$.NameOfFolder}}/">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+    <script type="application/ld+json"> 
+        {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "http://glamhub.co/webstories/{{$.NameOfFolder}}/"
+            },
+            "isPartOf": {
+                "@type": "CreativeWork",
+                "name": "Glamhub Stories",
+                "url": "https://glamhub.co/webstories/"
+            },
+            "inLanguage": "en",
+            "headline": "{{.Head.Title}}",
+           "description": "{{.Head.StoryDescription}}",
+           "keywords": [ {{$.KeywordsJson}} ],
+            "articleSection": "web stories",
+            "url": "http://glamhub.co/webstories/{{$.NameOfFolder}}/",
+            "image": "{{(index $.Body.Pages 0).ImageLink}}",
+            "datePublished": "{{$.Time}}",
+            "dateModified": "{{$.Time}}",
+            "author":[
+                {
+                "@type": "Person",
+                "name": "Bablu"
+                }
+                
+            ],
+            "publisher": {
+                "@type": "NewsMediaOrganization",
+                "name": "Glamhub",
+                "url": "https://www.glamhub.co",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://glamhub.co/Assets/brand/glamhubicon.png",
+                    "width": 300,
+                    "height": 300
+                }
+            },
+            "associatedMedia": {
+                "@type": "imageObject",
+                "url": "http://glamhub.co/webstories/{{$.NameOfFolder}}/",
+                "caption": "{{.Head.Title}}",
+                "description": "{{.Head.StoryDescription}}"
+            }
+        } 
+</script>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MediaGallery",
+        "description": "{{$.Head.StoryDescription}}",
+        "mainEntityOfPage": {
+            "@type": "ImageGallery",
+            "associatedMedia": [
+                {{ range $.Body.Pages }}
+                {
+                "@type": "ImageObject",
+                {{if .TextDescription.Big}}
+                    {{if .TextDescription.Small}}
+                    "name": "{{.TextDescription.Big}}.{{.TextDescription.Small}} ",
+                    {{else}}
+                    "name": "{{.TextDescription.Big}}",
+                    {{end}}
+                {{else if .TextDescription.Small}} "name": "{{.TextDescription.Small}}",
+                {{else}}
+                "name": "{{$.Head.Title}}",
+                {{end}}
+                "thumbnailUrl":"https://glamhub.co/webstories/{{$.NameOfFolder}}/{{.ImageLink}}" },
+                {{end}}
+              
+            ]
+        }
+    }
+</script>
+    <style amp-boilerplate>
+        body {
+            -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        }
+
+        @-webkit-keyframes -amp-start {
+            from {
+                visibility: hidden;
+            }
+
+            to {
+                visibility: visible;
+            }
+        }
+
+        @-moz-keyframes -amp-start {
+            from {
+                visibility: hidden;
+            }
+
+            to {
+                visibility: visible;
+            }
+        }
+
+        @-ms-keyframes -amp-start {
+            from {
+                visibility: hidden;
+            }
+
+            to {
+                visibility: visible;
+            }
+        }
+
+        @-o-keyframes -amp-start {
+            from {
+                visibility: hidden;
+            }
+
+            to {
+                visibility: visible;
+            }
+        }
+
+        @keyframes -amp-start {
+            from {
+                visibility: hidden;
+            }
+
+            to {
+                visibility: visible;
+            }
+        }
+    </style>
+    <noscript>
+        <style amp-boilerplate>
+            body {
+                -webkit-animation: none;
+                -moz-animation: none;
+                -ms-animation: none;
+                animation: none;
+            }
+        </style>
+    </noscript>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-story-auto-ads" src="https://cdn.ampproject.org/v0/amp-story-auto-ads-0.1.js"></script>
+</head>
+{{end}}
+{{define "body"}}
+<body>
+
+    <!--Edit Title , Image and Background Music Here-->
+    <amp-story data-test-id="visual-story" standalone title="{{$.Head.Title}}" publisher="Glamhub"
+        publisher-logo-src="https://glamhub.co/Assets/brand/glamhubicon.png" poster-portrait-src="assets/portrait.{{$.Extension}}" poster-landscape-src="assets/landscape.{{$.Extension}}" poster-square-src = "assets/square.{{$.Extension}}"
+        {{if $.Audio}}background-audio="{{$.Audio}}"{{end}}>
+        <amp-analytics type="gtag" data-credentials="include">
+            <script type="application/json">
+            {
+              "vars" : {
+                "gtag_id": "G-8G9L09RXSG",
+                "config" : {
+                  "G-8G9L09RXSG": { "groups": "default" }
+                }
+              }
+            }
+            </script>
+            </amp-analytics>
+            <amp-story-auto-ads>
+                <script type="application/json">
+                 {
+                  "ad-attributes": {
+                   "type": "adsense",
+                   "data-ad-client": "ca-pub-3174138383719062",
+                   "data-ad-slot": "5342292176"
+                  }
+                 }
+                 </script>
+                </amp-story-auto-ads>
+        {{template "Pages" .}}
+    </amp-story>
+</body>
+
+{{end}}
+
+{{define "Pages"}}
+{{ range $.Body.Pages }}
+<amp-story-page id="{{.Id}}" auto-advance-after="5s" >
+
+
+
+            <amp-story-grid-layer template="fill">
+
+                <!--Edit Image Link and Alt Text-->
+                <amp-img animate-in="fade-in" src="{{.ImageLink}}" width="900" height="1600" alt="{{.ImageAlt}}">
+                </amp-img>
+
+
+
+            </amp-story-grid-layer>
+            <amp-story-grid-layer template="vertical">
+
+
+                <!--  Edit Text -->
+                {{if .TextDescription.Big}}<h1 class=" text-white text-4xl mt-96  verdana  ">{{.TextDescription.Big}}</h1>{{end}}
+                {{if $.Audio }}<span class=" bg-purple-700 p-10 text-white verdana rounded-2xl text-lg ">‎ Unmute Audio at top right corner ‎‎</span>{{end}}
+                {{if .TextDescription.Small }}<span class="text-white verdana pt-96 " >{{.TextDescription.Small}}</span>{{end}}
+                {{if $.Source }}<p class=" text-white text-xs mt-96  verdana  ">Source : {{$.Source}}</p>{{end}}
+
+
+            </amp-story-grid-layer>
+        </amp-story-page>
+{{end}}
+{{end}}
+
